@@ -2,6 +2,7 @@ require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 platform :ios, '11.0'
+$FirebaseSDKVersion = '8.10.0'
 
 target 'SoftB' do
   config = use_native_modules!
@@ -16,6 +17,18 @@ target 'SoftB' do
     inherit! :complete
     # Pods for testing
   end
+
+  # Add the Firebase pod for Google Analytics
+  pod 'Firebase/Analytics'
+
+  # For Analytics without IDFA collection capability, use this pod instead
+  # pod ‘Firebase/AnalyticsWithoutAdIdSupport’
+
+  # Add the pods for any other Firebase products you want to use in your app
+  # For example, to use Firebase Authentication and Cloud Firestore
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+
 
   # Enables Flipper.
   #

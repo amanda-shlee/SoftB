@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "559453634091",
+    "project_id": "soft-b",
+    "storage_bucket": "soft-b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559453634091:android:d7ba3a8ebdec72add8346e",
+        "android_client_info": {
+          "package_name": "com.softb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559453634091-3jlcm3lfqufflo1807i77nv64l8t3ocr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDclktv77h7nKtqsDFD3_J0xXtf4wjyLR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559453634091-3jlcm3lfqufflo1807i77nv64l8t3ocr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "559453634091-ui5rrqo6oomd5dbn77dg91053j2u2q5i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.softb"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
