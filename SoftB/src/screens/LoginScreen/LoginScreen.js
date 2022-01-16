@@ -1,10 +1,13 @@
-import {useNavigation} from '@react-navigation/native';
-import {Center, Heading, NativeBaseProvider, Text} from 'native-base';
-import React, {useState} from 'react';
-import {Alert} from 'react-native';
-import {InputEmail, InputPassword} from '../../components/input';
-import {PrimaryButton} from '../../components/button';
 import auth from '@react-native-firebase/auth';
+import { useNavigation } from '@react-navigation/native';
+import { Heading, NativeBaseProvider, Text } from 'native-base';
+import React, { useState } from 'react';
+import { Alert } from 'react-native';
+import { PrimaryButton } from '../../components/button';
+import { InputEmail, InputPassword } from '../../components/input';
+import screens from '../../navigator/navigator';
+import { DefaultBox, LoginBox } from '../../components/box';
+import { ScreenContainer } from '../../shared/LinearGradient';
 
 export const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -25,6 +28,7 @@ export const LoginScreen = () => {
       let response = await auth().signInWithEmailAndPassword(email, password);
       if (response && response.user) {
         Alert.alert('Success ✅', 'Authenticated successfully');
+        navigation.navigate(screens.home);
       }
     } catch (e) {
       console.error(e.message);
@@ -34,20 +38,28 @@ export const LoginScreen = () => {
 
   return (
     <NativeBaseProvider>
-      <Center flex={1} px="3">
-        <Heading my="5">Login to SoftB</Heading>
-        <InputEmail value={email} onChange={e => handleEmail(e)} />
-        <InputPassword
-          show={showPassword}
-          value={password}
-          onPress={() => setShowPassword(!showPassword)}
-          onChange={e => handlePassword(e)}
-        />
-        <Text my="5" onPress={() => console.log('hello')} fontSize="xs" italic>
-          Forget Password?
-        </Text>
-        <PrimaryButton onPress={handleLogin} title="Submit" />
-      </Center>
+      <ScreenContainer>
+        <DefaultBox px="3" flex>
+          <LoginBox>
+            <Heading my="5">Login to SoftB</Heading>
+            <InputEmail value={email} onChange={e => handleEmail(e)} />
+            <InputPassword
+              show={showPassword}
+              value={password}
+              onPress={() => setShowPassword(!showPassword)}
+              onChange={e => handlePassword(e)}
+            />
+            <Text
+              my="5"
+              onPress={() => console.log('hello')}
+              fontSize="xs"
+              italic>
+              Forget Password?
+            </Text>
+            <PrimaryButton onPress={handleLogin} title="Submit" />
+          </LoginBox>
+        </DefaultBox>
+      </ScreenContainer>
     </NativeBaseProvider>
   );
 };

@@ -1,6 +1,10 @@
 const screens = {
-  root: 'Login',
-  home: 'Home',
+  root: 'LoginScreen',
+  home: 'HomeScreen',
+  notification: 'NotificationScreen',
+  profile: 'ProfileScreen',
+  feeds: 'FeedsScreen',
+  more: 'MoreScreen',
 };
 
 export default screens;

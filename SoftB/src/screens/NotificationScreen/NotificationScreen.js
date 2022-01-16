@@ -1,17 +1,8 @@
-import { NativeBaseProvider, ScrollView } from 'native-base';
+import { Heading, NativeBaseProvider, ScrollView } from 'native-base';
 import React from 'react';
 import { DefaultBox, HomeScreenBox } from '../../components/box';
-import { ScreenHeading } from '../../components/header';
 import { ScreenContainer } from '../../shared/LinearGradient';
-import { useNavigation } from '@react-navigation/native';
-import screens from '../../navigator/navigator';
-export const HomeScreen = ({ currentUser }) => {
-  const navigation = useNavigation();
-
-  const onPressAvatar = () => {
-    navigation.navigate(screens.profile);
-  };
-
+export const NotificationScreen = ({ currentUser }) => {
   return (
     <NativeBaseProvider>
       <ScreenContainer>
@@ -25,11 +16,7 @@ export const HomeScreen = ({ currentUser }) => {
               minW: '100%',
             }}>
             <DefaultBox px="1" alignItems="flex-start">
-              <ScreenHeading
-                screenTitle="Home 🏠"
-                userName={currentUser.userName}
-                onPress={onPressAvatar}
-              />
+              <Heading color="#000000">Alerts 🔔</Heading>
               {[1, 2, 3, 4].map((i, ind) => {
                 return <HomeScreenBox p={16} />;
               })}

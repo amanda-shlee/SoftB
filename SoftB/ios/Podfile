@@ -20,7 +20,7 @@ target 'SoftB' do
 
   # Add the Firebase pod for Google Analytics
   pod 'Firebase/Analytics'
-
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   # For Analytics without IDFA collection capability, use this pod instead
   # pod ‘Firebase/AnalyticsWithoutAdIdSupport’
 

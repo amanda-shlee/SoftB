@@ -1,17 +1,12 @@
-import { NativeBaseProvider, ScrollView } from 'native-base';
+import { Heading, NativeBaseProvider, ScrollView, Text } from 'native-base';
+import { Linking } from 'react-native';
 import React from 'react';
 import { DefaultBox, HomeScreenBox } from '../../components/box';
-import { ScreenHeading } from '../../components/header';
 import { ScreenContainer } from '../../shared/LinearGradient';
-import { useNavigation } from '@react-navigation/native';
-import screens from '../../navigator/navigator';
-export const HomeScreen = ({ currentUser }) => {
-  const navigation = useNavigation();
-
-  const onPressAvatar = () => {
-    navigation.navigate(screens.profile);
+export const MoreScreen = ({ currentUser }) => {
+  const onPress = () => {
+    Linking.openURL('http://google.com');
   };
-
   return (
     <NativeBaseProvider>
       <ScreenContainer>
@@ -25,14 +20,17 @@ export const HomeScreen = ({ currentUser }) => {
               minW: '100%',
             }}>
             <DefaultBox px="1" alignItems="flex-start">
-              <ScreenHeading
-                screenTitle="Home 🏠"
-                userName={currentUser.userName}
-                onPress={onPressAvatar}
-              />
-              {[1, 2, 3, 4].map((i, ind) => {
-                return <HomeScreenBox p={16} />;
-              })}
+              <Heading color="#000000">Settings 🔎</Heading>
+              <HomeScreenBox p={16} />
+              <Heading color="#000000">Visit Us</Heading>
+              <HomeScreenBox p={16}>
+                <Text>
+                  Please visit our website at {''}
+                  <Text onPress={onPress} fontStyle="oblique">
+                    Google
+                  </Text>
+                </Text>
+              </HomeScreenBox>
             </DefaultBox>
           </ScrollView>
         </DefaultBox>
