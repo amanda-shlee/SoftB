@@ -100,8 +100,13 @@ export const TabNavigator = ({ currentUser }) => {
             fontWeight: 'bold',
             marginTop: 2,
             color: '#000000',
+            backgroundColor: 'transparent',
           },
-          tabBarStyle: { borderTopWidth: 0, backgroundColor: 'transparent' },
+          tabBarStyle: {
+            borderTopWidth: 0,
+            backgroundColor: 'transparent',
+            elevation: 0,
+          },
         }}>
         <Tab.Screen
           name="Home"

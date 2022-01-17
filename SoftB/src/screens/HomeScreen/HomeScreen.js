@@ -1,4 +1,4 @@
-import { NativeBaseProvider, ScrollView } from 'native-base';
+import { NativeBaseProvider, ScrollView, StatusBar } from 'native-base';
 import React from 'react';
 import { DefaultBox, HomeScreenBox } from '../../components/box';
 import { ScreenHeading } from '../../components/header';
@@ -14,6 +14,7 @@ export const HomeScreen = ({ currentUser }) => {
 
   return (
     <NativeBaseProvider>
+      <StatusBar translucent={true} backgroundColor={'transparent'} />
       <ScreenContainer>
         <DefaultBox>
           <ScrollView
@@ -30,8 +31,8 @@ export const HomeScreen = ({ currentUser }) => {
                 userName={currentUser.userName}
                 onPress={onPressAvatar}
               />
-              {[1, 2, 3, 4].map((i, ind) => {
-                return <HomeScreenBox p={16} />;
+              {[1, 2].map((i, ind) => {
+                return <HomeScreenBox key={`home-${ind}`} p={16} />;
               })}
             </DefaultBox>
           </ScrollView>

@@ -1,6 +1,6 @@
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
-import { Heading, NativeBaseProvider, Text } from 'native-base';
+import { Heading, NativeBaseProvider, Text, StatusBar } from 'native-base';
 import React, { useState } from 'react';
 import { Alert } from 'react-native';
 import { PrimaryButton } from '../../components/button';
@@ -38,6 +38,7 @@ export const LoginScreen = () => {
 
   return (
     <NativeBaseProvider>
+      <StatusBar translucent={true} backgroundColor={'transparent'} />
       <ScreenContainer>
         <DefaultBox px="3" flex>
           <LoginBox>

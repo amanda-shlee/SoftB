@@ -19,7 +19,7 @@ export const SecondaryButton = ({ onPress, title }) => {
 
 export const VariantButton = ({ onPress, title }) => {
   return (
-    <Button size="md" variant="outline" w="50%" onPress={onPress}>
+    <Button size="md" colorScheme="amber" w="50%" onPress={onPress}>
       {title}
     </Button>
   );

@@ -31,6 +31,8 @@ const App = () => {
     }
   }, [authUser]);
 
+  console.log(authUser);
+
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber;

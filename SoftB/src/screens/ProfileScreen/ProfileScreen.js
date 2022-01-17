@@ -1,15 +1,38 @@
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
-import { Heading, NativeBaseProvider, ScrollView } from 'native-base';
+import {
+  FormControl,
+  Heading,
+  Input,
+  NativeBaseProvider,
+  ScrollView,
+  StatusBar,
+  Text,
+} from 'native-base';
 import React, { useState } from 'react';
 import { DefaultBox, HomeScreenBox } from '../../components/box';
-import { SecondaryButton } from '../../components/button';
+import { SecondaryButton, VariantButton } from '../../components/button';
+import { Modal } from '../../components/modal';
 import screens from '../../navigator/navigator';
 import { ScreenContainer } from '../../shared/LinearGradient';
-import { Modal } from '../../components/modal';
+
 export const ProfileScreen = ({ currentUser }) => {
   const navigation = useNavigation();
   const [logout, setLogout] = useState(false);
+  const [update, setUpdate] = useState(false);
+  const [userName, setUserName] = useState(currentUser.userName);
+
+  const onChangeUserName = e => {
+    setUserName(e);
+  };
+
+  const onPressConfirmUpdate = () => {
+    setUpdate(!update);
+  };
+
+  const onPressUpdate = () => {
+    console.log('hello');
+  };
 
   const onPressConfirmLogout = () => {
     setLogout(!logout);
@@ -23,6 +46,7 @@ export const ProfileScreen = ({ currentUser }) => {
 
   return (
     <NativeBaseProvider>
+      <StatusBar translucent={true} backgroundColor={'transparent'} />
       <ScreenContainer>
         <DefaultBox>
           <ScrollView
@@ -35,9 +59,35 @@ export const ProfileScreen = ({ currentUser }) => {
             }}>
             <DefaultBox px="1" alignItems="flex-start">
               <Heading color="#000000">{` Hello 👋 ${currentUser.userName}`}</Heading>
-              <HomeScreenBox p={16} />
+              <HomeScreenBox p={5}>
+                <Text fontWeight="bold" mb="5" fontSize="md">
+                  Profile Information
+                </Text>
+                <FormControl>
+                  <FormControl.Label>Email Address</FormControl.Label>
+                  <Input value={currentUser.email} isDisabled={true} />
+                  <FormControl.HelperText>
+                    Please contact your administrator if you would like to
+                    update your email address.
+                  </FormControl.HelperText>
+                </FormControl>
+                <FormControl mt="3">
+                  <FormControl.Label>Full Name</FormControl.Label>
+                  <Input
+                    value={userName}
+                    onChangeText={onChangeUserName}
+                    placeholder="Full Name"
+                  />
+                </FormControl>
+              </HomeScreenBox>
             </DefaultBox>
-            <DefaultBox px="5" alignItems="center" flex>
+            <DefaultBox px="2" alignItems="center">
+              <VariantButton
+                onPress={onPressConfirmUpdate}
+                title="Update Your Profile"
+              />
+            </DefaultBox>
+            <DefaultBox px="2" alignItems="center">
               <SecondaryButton onPress={onPressConfirmLogout} title="Log out" />
             </DefaultBox>
           </ScrollView>
@@ -49,6 +99,15 @@ export const ProfileScreen = ({ currentUser }) => {
           onClose={onPressConfirmLogout}
           onPress={onPressLogout}
           text="Are you sure you want to log out?"
+        />
+      )}
+
+      {update && (
+        <Modal
+          isOpen={update}
+          onClose={onPressConfirmUpdate}
+          onPress={onPressUpdate}
+          text="Are you sure you want to update your profile?"
         />
       )}
     </NativeBaseProvider>

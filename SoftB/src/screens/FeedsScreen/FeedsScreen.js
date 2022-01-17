@@ -19,7 +19,7 @@ export const FeedsScreen = ({ currentUser }) => {
             <DefaultBox px="1" alignItems="flex-start">
               <Heading color="#000000">Feeds 📝</Heading>
               {[1, 2, 3, 4].map((i, ind) => {
-                return <HomeScreenBox p={16} />;
+                return <HomeScreenBox key={`feeds-${ind}`} p={16} />;
               })}
             </DefaultBox>
           </ScrollView>

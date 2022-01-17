@@ -1,4 +1,10 @@
-import { Heading, NativeBaseProvider, ScrollView, Text } from 'native-base';
+import {
+  Heading,
+  NativeBaseProvider,
+  ScrollView,
+  Text,
+  StatusBar,
+} from 'native-base';
 import { Linking } from 'react-native';
 import React from 'react';
 import { DefaultBox, HomeScreenBox } from '../../components/box';
@@ -9,6 +15,7 @@ export const MoreScreen = ({ currentUser }) => {
   };
   return (
     <NativeBaseProvider>
+      <StatusBar translucent={true} backgroundColor={'transparent'} />
       <ScreenContainer>
         <DefaultBox>
           <ScrollView
@@ -26,9 +33,7 @@ export const MoreScreen = ({ currentUser }) => {
               <HomeScreenBox p={16}>
                 <Text>
                   Please visit our website at {''}
-                  <Text onPress={onPress} fontStyle="oblique">
-                    Google
-                  </Text>
+                  <Text onPress={onPress}>Google</Text>
                 </Text>
               </HomeScreenBox>
             </DefaultBox>

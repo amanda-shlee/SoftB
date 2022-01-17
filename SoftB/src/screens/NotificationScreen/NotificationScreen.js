@@ -18,7 +18,7 @@ export const NotificationScreen = ({ currentUser }) => {
             <DefaultBox px="1" alignItems="flex-start">
               <Heading color="#000000">Alerts 🔔</Heading>
               {[1, 2, 3, 4].map((i, ind) => {
-                return <HomeScreenBox p={16} />;
+                return <HomeScreenBox key={`alerts-${ind}`} p={16} />;
               })}
             </DefaultBox>
           </ScrollView>
