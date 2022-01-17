@@ -18,9 +18,16 @@ target 'SoftB' do
     # Pods for testing
   end
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+  pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
+  
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera/Permission-Camera.podspec"
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-async-storage/async-storage'
   # Add the Firebase pod for Google Analytics
   pod 'Firebase/Analytics'
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   # For Analytics without IDFA collection capability, use this pod instead
   # pod ‘Firebase/AnalyticsWithoutAdIdSupport’
 

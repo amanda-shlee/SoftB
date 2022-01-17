@@ -28,7 +28,7 @@ export const HomeScreen = ({ currentUser }) => {
             <DefaultBox px="1" alignItems="flex-start">
               <ScreenHeading
                 screenTitle="Home 🏠"
-                userName={currentUser.userName}
+                userName={currentUser?.userName}
                 onPress={onPressAvatar}
               />
               {[1, 2].map((i, ind) => {

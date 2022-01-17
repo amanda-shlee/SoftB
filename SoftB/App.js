@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { NativeBaseProvider } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import 'react-native-gesture-handler';
-import { getUser } from './firebaseConfig';
+import { getRealtimeData } from './firebaseConfig';
 import { AuthStackScreen, TabNavigator } from './src/navigator/stackNavigator';
 
 const App = () => {
@@ -18,20 +18,26 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
-    if (authUser && authUser.uid) {
-      getUser(authUser.uid).then(res => {
-        if (res.data()) {
-          setCurrentUser({
-            userName: res.data().user_name,
-            email: res.data().user_email,
-          });
-        }
+  const onResult = querySnapshot => {
+    if (querySnapshot) {
+      const data = querySnapshot._data;
+      setCurrentUser({
+        userName: data.user_name,
+        email: data.user_email,
+        id: authUser.uid,
       });
     }
-  }, [authUser]);
+  };
 
-  console.log(authUser);
+  const onError = error => {
+    console.log({ hello: error });
+  };
+
+  useEffect(() => {
+    if (authUser && authUser.uid) {
+      getRealtimeData('users', authUser.uid).onSnapshot(onResult, onError);
+    }
+  }, [authUser]);
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);

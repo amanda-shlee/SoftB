@@ -10,6 +10,8 @@ import {
   Text,
 } from 'native-base';
 import React, { useState } from 'react';
+import { Alert } from 'react-native';
+import { updateData } from '../../../firebaseConfig';
 import { DefaultBox, HomeScreenBox } from '../../components/box';
 import { SecondaryButton, VariantButton } from '../../components/button';
 import { Modal } from '../../components/modal';
@@ -31,7 +33,12 @@ export const ProfileScreen = ({ currentUser }) => {
   };
 
   const onPressUpdate = () => {
-    console.log('hello');
+    updateData('users', currentUser.id)
+      .update({ user_name: userName })
+      .then(() => {
+        Alert.alert('Success ✅', 'Updated successfully');
+      });
+    setUpdate(!update);
   };
 
   const onPressConfirmLogout = () => {
@@ -41,7 +48,10 @@ export const ProfileScreen = ({ currentUser }) => {
   const onPressLogout = () => {
     auth()
       .signOut()
-      .then(() => navigation.navigate(screens.root));
+      .then(() => navigation.navigate(screens.root))
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   return (
