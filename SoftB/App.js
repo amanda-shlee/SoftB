@@ -49,7 +49,7 @@ const App = () => {
     return null;
   }
 
-  LogBox.ignoreLogs(['Warning: ...']);
+  LogBox.ignoreAllLogs();
 
   return (
     <NativeBaseProvider>
