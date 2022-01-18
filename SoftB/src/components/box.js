@@ -1,4 +1,4 @@
-import { Center, Box } from 'native-base';
+import { Center, Box, Button } from 'native-base';
 import React from 'react';
 
 export const DefaultBox = ({ children, px, alignItems, flex }) => {
@@ -51,5 +51,28 @@ export const HomeScreenBox = ({ children, p }) => {
       }}>
       {children}
     </Box>
+  );
+};
+
+export const ProfileBox = ({ children, onPress, p }) => {
+  return (
+    <Button width="100%" onPress={onPress} mt="5">
+      <Box
+        bg="primary.50"
+        width="100%"
+        p={p}
+        rounded="xl"
+        borderWidth="2"
+        borderColor="primary.50"
+        my="2"
+        _text={{
+          fontSize: 'md',
+          fontWeight: 'medium',
+          color: '#000000',
+          textAlign: 'left',
+        }}>
+        {children}
+      </Box>
+    </Button>
   );
 };

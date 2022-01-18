@@ -1,6 +1,7 @@
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import {
+  Button,
   FormControl,
   Heading,
   Input,
@@ -23,9 +24,33 @@ export const ProfileScreen = ({ currentUser }) => {
   const [logout, setLogout] = useState(false);
   const [update, setUpdate] = useState(false);
   const [userName, setUserName] = useState(currentUser.userName);
+  const [password, setPassword] = useState('');
+  const [department, setDepartment] = useState(currentUser.department);
+  const [jobTitle, setJobTitle] = useState(currentUser.jobTitle);
+  const [phone, setPhone] = useState(currentUser.phone);
+
+  const onPress = () => {
+    navigation.navigate(screens.more);
+  };
 
   const onChangeUserName = e => {
     setUserName(e);
+  };
+
+  const onChangePhone = e => {
+    setPhone(e);
+  };
+
+  const onChangeDepartment = e => {
+    setDepartment(e);
+  };
+
+  const onChangeJobTitle = e => {
+    setJobTitle(e);
+  };
+
+  const onChangePassword = e => {
+    setPassword(e);
   };
 
   const onPressConfirmUpdate = () => {
@@ -34,7 +59,11 @@ export const ProfileScreen = ({ currentUser }) => {
 
   const onPressUpdate = async () => {
     await updateData('users', currentUser.id)
-      .update({ user_name: userName })
+      .update({
+        user_name: userName,
+        user_department: department,
+        user_jobTitle: jobTitle,
+      })
       .then(() => {
         Alert.alert('Success ✅', 'Updated successfully');
       });
@@ -68,6 +97,9 @@ export const ProfileScreen = ({ currentUser }) => {
               minW: '100%',
             }}>
             <DefaultBox px="1" alignItems="flex-start">
+              <Button onPress={onPress} my="2">
+                Back
+              </Button>
               <Heading color="#000000">{` Hello 👋 ${currentUser.userName}`}</Heading>
               <HomeScreenBox p={5}>
                 <Text fontWeight="bold" mb="5" fontSize="md">
@@ -87,6 +119,40 @@ export const ProfileScreen = ({ currentUser }) => {
                     value={userName}
                     onChangeText={onChangeUserName}
                     placeholder="Full Name"
+                  />
+                </FormControl>
+
+                <FormControl mt="3">
+                  <FormControl.Label>Phone</FormControl.Label>
+                  <Input
+                    value={phone}
+                    onChangeText={onChangePhone}
+                    placeholder="Phone Number"
+                  />
+                </FormControl>
+                <FormControl mt="3">
+                  <FormControl.Label>Password</FormControl.Label>
+                  <Input
+                    type="password"
+                    value={password}
+                    onChangeText={onChangePassword}
+                    placeholder="Password"
+                  />
+                </FormControl>
+                <FormControl mt="3">
+                  <FormControl.Label>Department</FormControl.Label>
+                  <Input
+                    value={department}
+                    onChangeText={onChangeDepartment}
+                    placeholder="Department"
+                  />
+                </FormControl>
+                <FormControl mt="3">
+                  <FormControl.Label>Job Title</FormControl.Label>
+                  <Input
+                    value={jobTitle}
+                    onChangeText={onChangeJobTitle}
+                    placeholder="Job Title"
                   />
                 </FormControl>
               </HomeScreenBox>

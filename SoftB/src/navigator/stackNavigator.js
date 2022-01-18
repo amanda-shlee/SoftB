@@ -25,6 +25,9 @@ const HomeStackScreen = ({ currentUser }) => {
       <HomeStack.Screen name={screens.profile}>
         {props => <ProfileScreen {...props} currentUser={currentUser} />}
       </HomeStack.Screen>
+      <HomeStack.Screen name={screens.more}>
+        {props => <MoreScreen {...props} currentUser={currentUser} />}
+      </HomeStack.Screen>
       <HomeStack.Screen name={screens.root}>
         {props => <LoginScreen {...props} />}
       </HomeStack.Screen>

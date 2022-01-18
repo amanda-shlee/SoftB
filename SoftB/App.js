@@ -25,6 +25,9 @@ const App = () => {
       setCurrentUser({
         userName: data.user_name,
         email: data.user_email,
+        jobTitle: data.user_jobTitle,
+        department: data.user_department,
+        phone: data.phone,
         id: authUser.uid,
       });
     }
