@@ -32,8 +32,8 @@ export const ProfileScreen = ({ currentUser }) => {
     setUpdate(!update);
   };
 
-  const onPressUpdate = () => {
-    updateData('users', currentUser.id)
+  const onPressUpdate = async () => {
+    await updateData('users', currentUser.id)
       .update({ user_name: userName })
       .then(() => {
         Alert.alert('Success ✅', 'Updated successfully');

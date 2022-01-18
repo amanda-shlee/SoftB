@@ -2,6 +2,7 @@ import auth from '@react-native-firebase/auth';
 import { NavigationContainer } from '@react-navigation/native';
 import { NativeBaseProvider } from 'native-base';
 import React, { useEffect, useState } from 'react';
+import { LogBox } from 'react-native';
 import 'react-native-gesture-handler';
 import { getRealtimeData } from './firebaseConfig';
 import { AuthStackScreen, TabNavigator } from './src/navigator/stackNavigator';
@@ -47,6 +48,8 @@ const App = () => {
   if (initializing) {
     return null;
   }
+
+  LogBox.ignoreLogs(['Warning: ...']);
 
   return (
     <NativeBaseProvider>
